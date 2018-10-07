@@ -16,7 +16,7 @@ export function bootstrapSlotModule(module: SlotModule): void {
 
   if (autoInstantiate && autoInstantiate.length > 0) {
     autoInstantiate.forEach((clazz) => {
-      diContainer.bind(clazz).toSelf();
+      diContainer.bind(clazz).toSelf().inSingletonScope();
     });
 
     autoInstantiate.forEach((clazz) => {
