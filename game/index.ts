@@ -1,4 +1,4 @@
-import { bootstrapSlotModule } from '../src/bootstrap';
 import { GameModule } from './module';
+import { bootstrapModule } from '../src/bootstrap/bootstrap-module';
 
-bootstrapSlotModule(GameModule);
+bootstrapModule(GameModule);
