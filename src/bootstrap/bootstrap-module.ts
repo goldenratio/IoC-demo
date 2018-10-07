@@ -3,7 +3,7 @@ import 'polyfills';
 import { SlotGame, SlotModule } from '../game/api/index';
 import { TYPES } from '../types';
 import { MainGame } from '../game';
-import { diContainer } from '../ioc/index';
+import { diContainer } from '../ioc/ioc-container';
 
 
 export function bootstrapSlotModule(module: SlotModule): void {

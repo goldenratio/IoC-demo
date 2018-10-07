@@ -7,7 +7,7 @@ const defaultConfig = (isProduction) => {
   return {
     target: 'web',
     entry: {
-      index: './game/index.ts'
+      index: './game/bootstrap-module.ts'
     },
     devServer: {
       contentBase: './dist',
