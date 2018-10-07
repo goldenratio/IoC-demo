@@ -24,7 +24,7 @@ export function bootstrapSlotModule(module: SlotModule): void {
     });
   }
 
-  const mainGame = diContainer.get<GameMain>(GameMain);
+  const mainGame = diContainer.get<GameMain>(TYPES.GameMain);
   // test - some function call
   mainGame.someStuff();
 }
