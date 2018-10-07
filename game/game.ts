@@ -1,5 +1,5 @@
-import { SlotGame } from '../src/game/api';
 import { inject, injectable } from 'inversify';
+import { SlotGame } from '../src/game/api';
 import { TYPES } from '../src/types';
 
 @injectable()
