@@ -5,7 +5,6 @@ import { TYPES } from '../types';
 import { configDefaultDependencies, diContainer } from '../ioc';
 import { GameMain } from '../game/GameMain';
 
-
 export function bootstrapSlotModule(module: SlotModule): void {
 
   const { GameClazz, autoInstantiate, configDependencies } = module;
