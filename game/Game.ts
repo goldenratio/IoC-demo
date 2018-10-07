@@ -1,14 +1,11 @@
-import { inject, injectable } from 'inversify';
+import { injectable } from 'inversify';
 import { SlotGame } from '../src/game/api';
-import { TYPES } from '../src/types';
 
 @injectable()
 export class Game implements SlotGame {
 
-  constructor(
-    @inject(TYPES.Version) version: string
-  ) {
-    console.log('game ', version);
+  constructor() {
+    console.log('game ');
   }
 
   foo(): void {
