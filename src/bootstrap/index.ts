@@ -1,20 +1,17 @@
 import 'reflect-metadata';
 import 'polyfills';
-
-import { SlotGame, SlotModule } from '../game/api';
+import { SlotGame, SlotModule } from '../game/api/index';
 import { TYPES } from '../types';
-import { MainGame } from '../game/MainGame';
-import { Container } from 'inversify';
-// import { diContainer } from '../ioc/ioc-container';
+import { MainGame } from '../game';
+import { diContainer } from '../ioc/index';
 
 
-export function bootstrapModule(module: SlotModule): void {
+export function bootstrapSlotModule(module: SlotModule): void {
 
   const { GameClazz, autoInstantiate } = module;
 
-  const diContainer = new Container();
   diContainer.bind<SlotGame>(TYPES.SlotGame).to(GameClazz);
-  diContainer.bind<string>(TYPES.Version).toConstantValue('asa');
+  diContainer.bind<string>(TYPES.Version).toConstantValue('1.2.0');
   diContainer.bind(MainGame).toSelf();
 
   if (autoInstantiate && autoInstantiate.length > 0) {
