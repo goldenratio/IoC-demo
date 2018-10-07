@@ -3,7 +3,7 @@ import { SlotGame } from './api/index';
 import { TYPES } from '../types/index';
 
 @injectable()
-export class MainGame {
+export class GameMain {
 
   private readonly slotGame: SlotGame;
 

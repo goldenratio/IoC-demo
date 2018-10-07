@@ -1,9 +1,9 @@
 import 'reflect-metadata';
 import 'polyfills';
-import { SlotGame, SlotModule } from '../game/api/index';
+import { SlotGame, SlotModule } from '../game/api';
 import { TYPES } from '../types';
-import { MainGame } from '../game';
-import { diContainer } from '../ioc/index';
+import { diContainer } from '../ioc/ioc-cotainer';
+import { GameMain } from '../game/GameMain';
 
 
 export function bootstrapSlotModule(module: SlotModule): void {
@@ -12,7 +12,7 @@ export function bootstrapSlotModule(module: SlotModule): void {
 
   diContainer.bind<SlotGame>(TYPES.SlotGame).to(GameClazz);
   diContainer.bind<string>(TYPES.Version).toConstantValue('1.2.0');
-  diContainer.bind(MainGame).toSelf();
+  diContainer.bind(GameMain).toSelf();
 
   if (autoInstantiate && autoInstantiate.length > 0) {
     autoInstantiate.forEach((clazz) => {
@@ -24,7 +24,7 @@ export function bootstrapSlotModule(module: SlotModule): void {
     });
   }
 
-  const mainGame = diContainer.get<MainGame>(MainGame);
+  const mainGame = diContainer.get<GameMain>(GameMain);
   // test - some function call
   mainGame.someStuff();
 }
