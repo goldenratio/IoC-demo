@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es5",
+    "allowJs": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
+    "lib": [
+      "ES5",
+      "ES6",
+      "DOM",
+      "ES2015.Promise",
+      "ES2015.Core"
+    ],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "types": [
+      "node",
+      "reflect-metadata"
+    ]
+  },
+  "include": [
+    "./src",
+    "./game"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
