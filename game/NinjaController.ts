@@ -1,11 +1,8 @@
-import { inject, injectable } from 'inversify';
-import { TYPES } from '../src/types';
+import { injectable } from 'inversify';
 
 @injectable()
 export class NinjaController {
-  constructor(
-    @inject(TYPES.Version) version: string
-  ) {
-    console.log('Ninja Controller created ', version);
+  constructor() {
+    console.log('Ninja Controller created!');
   }
 }

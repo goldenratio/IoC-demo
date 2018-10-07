@@ -11,7 +11,7 @@ export class GameMain {
     @inject(TYPES.SlotGame) slotGame: SlotGame,
     @inject(TYPES.Version) version: string
   ) {
-    console.log('Main Game ', slotGame, version);
+    console.log('Game Main ', version);
     this.slotGame = slotGame;
   }
 
