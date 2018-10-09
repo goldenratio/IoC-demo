@@ -1,6 +1,6 @@
 import { injectable } from 'inversify';
 // import { Howl } from 'howler';
-import { SoundSystem } from './types';
+import { SoundSystem } from '../types';
 
 @injectable()
 export class HowlerSoundSystem implements SoundSystem {

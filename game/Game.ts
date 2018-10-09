@@ -3,7 +3,8 @@ import { SlotGame } from '../src/api';
 import { TYPES } from '../src/types';
 import { Renderer } from '../src/renderers/types';
 import { SoundSystem } from '../src/sound-systems/types';
-// import { GameModel } from './GameModel';
+import { GameModel } from './GameModel';
+import { GAME_TYPES } from './types';
 
 @injectable()
 export class Game implements SlotGame {
@@ -11,11 +12,11 @@ export class Game implements SlotGame {
   constructor(
     @inject(TYPES.Renderer) renderer: Renderer,
     @inject(TYPES.SoundSystem) soundSystem: SoundSystem,
-    // @inject(GameModel) gameModel: GameModel,
+    @inject(GAME_TYPES.GameModel) gameModel: GameModel,
   ) {
     console.log('game ---- ');
-    renderer.drawSquare();
-    soundSystem.playCoolSound();
+    // renderer.drawSquare();
+    // soundSystem.playCoolSound();
   }
 
   foo(): void {

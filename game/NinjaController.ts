@@ -1,8 +1,12 @@
-import { injectable } from 'inversify';
+import { inject, injectable } from 'inversify';
+import { GAME_TYPES } from './types/index';
+import { GameModel } from './GameModel';
 
 @injectable()
 export class NinjaController {
-  constructor() {
-    console.log('Ninja Controller created!');
+  constructor(
+    @inject(GAME_TYPES.GameModel) gameModel: GameModel
+  ) {
+    console.log('Ninja Controller created!', gameModel);
   }
 }

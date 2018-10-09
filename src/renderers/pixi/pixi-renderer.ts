@@ -1,6 +1,6 @@
 import { injectable } from 'inversify';
 import 'pixi.js';
-import { Renderer } from './types';
+import { Renderer } from '../types';
 
 @injectable()
 export class PixiRenderer implements Renderer {
