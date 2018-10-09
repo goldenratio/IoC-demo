@@ -1,4 +1,4 @@
 import { bootstrapSlotModule } from '../src/bootstrap';
-import { GameModule } from './GameModule';
+import { GameModuleConfig } from './GameModuleConfig';
 
-bootstrapSlotModule(GameModule);
+bootstrapSlotModule(GameModuleConfig);

@@ -1,30 +1,31 @@
 import 'reflect-metadata';
 import 'polyfills';
-import { SlotGame, SlotModule } from '../game/api';
-import { TYPES } from '../types';
-import { configDefaultDependencies, diContainer } from '../ioc';
+import { SlotModule } from './slot-module';
+import { SlotGame, SlotModuleConfig } from '../api';
+import { TYPES } from '../types/index';
 import { GameMain } from '../game/GameMain';
+import { Container } from 'inversify';
 
-export function bootstrapSlotModule(module: SlotModule): void {
+const moduleMap: Map<string, SlotModule> = new Map();
 
-  const { GameClazz, autoInstantiate, configDependencies } = module;
+export function bootstrapSlotModule(moduleConfig: SlotModuleConfig): void {
 
-  configDefaultDependencies(diContainer);
-  configDependencies(diContainer);
+  const { name } = moduleConfig;
+  const module = new SlotModule(moduleConfig);
+  module.onInit();
+  moduleMap.set(name, module);
 
-  diContainer.bind<SlotGame>(TYPES.SlotGame).to(GameClazz);
+  // todo: create default module config
+  const { container } = module;
+  configDefaultDependencies(container);
+  container.bind<SlotGame>(TYPES.SlotGame).to(moduleConfig.GameClazz);
 
-  if (autoInstantiate && autoInstantiate.length > 0) {
-    autoInstantiate.forEach((clazz) => {
-      diContainer.bind(clazz).toSelf().inSingletonScope();
-    });
-
-    autoInstantiate.forEach((clazz) => {
-      diContainer.resolve(clazz);
-    });
-  }
-
-  const mainGame = diContainer.get<GameMain>(TYPES.GameMain);
-  // test - some function call
+  const mainGame = container.get<GameMain>(TYPES.GameMain);
   mainGame.someStuff();
+}
+
+
+function configDefaultDependencies(diContainer: Container): void {
+  diContainer.bind<string>(TYPES.Version).toConstantValue('1.2.0');
+  diContainer.bind<GameMain>(TYPES.GameMain).to(GameMain);
 }

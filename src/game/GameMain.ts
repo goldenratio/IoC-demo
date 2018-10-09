@@ -1,6 +1,6 @@
 import { inject, injectable } from 'inversify';
-import { SlotGame } from './api';
 import { TYPES } from '../types';
+import { SlotGame } from '../api';
 
 @injectable()
 export class GameMain {
