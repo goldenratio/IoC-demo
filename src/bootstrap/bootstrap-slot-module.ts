@@ -1,31 +1,34 @@
 import 'reflect-metadata';
 import 'polyfills';
-import { SlotModule } from './slot-module';
-import { SlotGame, SlotModuleConfig } from '../api';
-import { TYPES } from '../types/index';
-import { GameMain } from '../game/GameMain';
 import { Container } from 'inversify';
 
-const moduleMap: Map<string, SlotModule> = new Map();
+import { Module } from './module';
+import { SlotModuleConfig } from '../api';
+import { TYPES } from '../types';
+import { GameMain } from '../game/game-main';
+import { ModuleConfig } from './types';
+import { PixiRenderer } from '../renderers/pixi-renderer';
+import { HowlerSoundSystem } from '../sound-systems/howler-sound-system';
+
+const frameworkModuleConfig: ModuleConfig = {
+  name: 'framework',
+  autoInstantiate: [
+    GameMain
+  ],
+  addBindings: (diContainer: Container) => {
+    diContainer.bind(TYPES.Renderer).to(PixiRenderer);
+    diContainer.bind(TYPES.SoundSystem).to(HowlerSoundSystem);
+  }
+};
 
 export function bootstrapSlotModule(moduleConfig: SlotModuleConfig): void {
 
-  const { name } = moduleConfig;
-  const module = new SlotModule(moduleConfig);
-  module.onInit();
-  moduleMap.set(name, module);
+  const frameworkModule = new Module(frameworkModuleConfig);
+  const gameModule = new Module(moduleConfig);
 
-  // todo: create default module config
-  const { container } = module;
-  configDefaultDependencies(container);
-  container.bind<SlotGame>(TYPES.SlotGame).to(moduleConfig.GameClazz);
+  gameModule.container.bind(TYPES.SlotGame).to(moduleConfig.GameClazz);
+  frameworkModule.initialize();
 
-  const mainGame = container.get<GameMain>(TYPES.GameMain);
-  mainGame.someStuff();
+  console.log(gameModule);
 }
 
-
-function configDefaultDependencies(diContainer: Container): void {
-  diContainer.bind<string>(TYPES.Version).toConstantValue('1.2.0');
-  diContainer.bind<GameMain>(TYPES.GameMain).to(GameMain);
-}

@@ -5,5 +5,6 @@ export interface Clazz<T = any> extends Function {
 export const TYPES = {
   SlotGame: Symbol.for('SlotGame'),
   GameMain: Symbol.for('GameMain'),
-  Version: Symbol.for('Version')
+  Renderer: Symbol.for('Renderer'),
+  SoundSystem: Symbol.for('SoundSystem')
 };

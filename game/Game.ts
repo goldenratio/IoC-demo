@@ -1,11 +1,21 @@
-import { injectable } from 'inversify';
+import { inject, injectable } from 'inversify';
 import { SlotGame } from '../src/api';
+import { TYPES } from '../src/types';
+import { Renderer } from '../src/renderers/types';
+import { SoundSystem } from '../src/sound-systems/types';
+// import { GameModel } from './GameModel';
 
 @injectable()
 export class Game implements SlotGame {
 
-  constructor() {
-    console.log('game ');
+  constructor(
+    @inject(TYPES.Renderer) renderer: Renderer,
+    @inject(TYPES.SoundSystem) soundSystem: SoundSystem,
+    // @inject(GameModel) gameModel: GameModel,
+  ) {
+    console.log('game ---- ');
+    renderer.drawSquare();
+    soundSystem.playCoolSound();
   }
 
   foo(): void {
