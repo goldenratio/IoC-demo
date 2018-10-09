@@ -14,9 +14,7 @@ export class Game implements SlotGame {
     @inject(TYPES.SoundSystem) soundSystem: SoundSystem,
     @inject(GAME_TYPES.GameModel) gameModel: GameModel,
   ) {
-    console.log('game ---- ');
-    // renderer.drawSquare();
-    // soundSystem.playCoolSound();
+    console.log('game ---- ', { renderer, soundSystem, gameModel });
   }
 
   foo(): void {

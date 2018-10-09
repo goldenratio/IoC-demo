@@ -7,6 +7,6 @@ export class NinjaController {
   constructor(
     @inject(GAME_TYPES.GameModel) gameModel: GameModel
   ) {
-    console.log('Ninja Controller created!', gameModel);
+    console.log('Ninja Controller created!', { gameModel });
   }
 }

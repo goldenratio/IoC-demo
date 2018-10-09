@@ -7,12 +7,15 @@ import { SlotGame } from '../api';
 @injectable()
 export class GameMain {
 
+  private _slotGame: SlotGame;
+
   constructor(
     @inject(TYPES.SlotGame) slotGame: SlotGame,
     @inject(TYPES.Renderer) renderer: Renderer,
     @inject(TYPES.SoundSystem) soundSystem: SoundSystem,
   ) {
     console.log('Game Main from framework');
+    this._slotGame = slotGame;
     renderer.drawCircle();
     soundSystem.playCoolSound();
   }
@@ -20,10 +23,6 @@ export class GameMain {
   @postConstruct()
   initialize(): void {
     console.log('postConstruct initialize');
-  }
-
-  someStuff(): void {
-    // some stuff
-    console.log('some stuff');
+    this._slotGame.foo();
   }
 }
