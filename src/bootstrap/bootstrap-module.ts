@@ -3,12 +3,14 @@ import 'polyfills';
 import { Container } from 'inversify';
 
 import { Module } from './module';
-import { SlotModuleConfig } from '../api';
+import { SlotGame, SlotModuleConfig } from '../api';
 import { TYPES } from '../types';
 import { GameMain } from '../game/game-main';
 import { ModuleConfig } from './types';
 import { PixiRenderer } from '../renderers/pixi/pixi-renderer';
 import { HowlerSoundSystem } from '../sound-systems/howler/howler-sound-system';
+import { Renderer } from '../renderers/types';
+import { SoundSystem } from '../sound-systems/types';
 
 const diContainer = new Container();
 
@@ -17,8 +19,8 @@ const frameworkModuleConfig: ModuleConfig = {
     GameMain
   ],
   addBindings: (diContainer: Container) => {
-    diContainer.bind(TYPES.Renderer).to(PixiRenderer).inSingletonScope();
-    diContainer.bind(TYPES.SoundSystem).to(HowlerSoundSystem).inSingletonScope();
+    diContainer.bind<Renderer>(TYPES.Renderer).to(PixiRenderer).inSingletonScope();
+    diContainer.bind<SoundSystem>(TYPES.SoundSystem).to(HowlerSoundSystem).inSingletonScope();
   }
 };
 
@@ -28,7 +30,7 @@ export function bootstrapModule(moduleConfig: SlotModuleConfig): void {
   const gameModule = new Module(moduleConfig, diContainer);
 
   const { GameClazz } = moduleConfig;
-  diContainer.bind(TYPES.SlotGame).to(GameClazz);
+  diContainer.bind<SlotGame>(TYPES.SlotGame).to(GameClazz);
   frameworkModule.initialize();
   gameModule.initialize();
 }
