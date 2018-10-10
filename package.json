@@ -1,8 +1,7 @@
 {
-  "name": "slot-framework",
+  "name": "@gsba/slot-framework",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --config webpack.config.js --open",
     "build": "webpack --mode production --config webpack.config.js"
