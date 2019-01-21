@@ -34,7 +34,7 @@
     "core-js": "2.6.2",
     "howler": "2.1.1",
     "inversify": "5.0.1",
-    "pixi.js": "4.8.4",
+    "pixi.js": "4.8.5",
     "reflect-metadata": "0.1.13"
   }
 }
